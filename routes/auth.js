@@ -1,17 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user"); // Ensure correct path to the User model
+const User = require("../models/user");
 const router = express.Router();
-// get route log
-// router.get("/", (req, res) => {
-//   res.send({ status: 200, statusText: "OK" });
-//   console.log("Hello, this is the auth API");
-// });
 
 // Register route
 router.post("/register", async (req, res) => {
-  console.log("Request Body:", req.body); // Log the request body
+  console.log("Request Body:", req.body);
   const { username, email, password } = req.body;
   try {
     // Check if user already exists
@@ -30,7 +25,7 @@ router.post("/register", async (req, res) => {
 
     res.json({ msg: "User registered successfully" });
   } catch (err) {
-    console.error("Error during registration:", err); // Log error for debugging
+    console.error("Error during registration:", err);
     res.status(500).json({ error: err.message });
   }
 });
